@@ -1,0 +1,36 @@
+1)
+
+A = ρ nome ← first_name, sobrenome ← last_name (directors)
+B = (A) ⨝ nome = actors.first_name ∧ sobrenome = actors.last_name (actors)
+π nome,sobrenome (B)
+
+
+2)
+
+π first_name,last_name(actors) - π first_name,last_name (directors)
+
+
+
+3)
+
+πfirst_name,last_name (actors) ∪ π first_name,last_name (directors)
+
+
+4)
+
+A = directors ⨝ directors.id = movies_directors.director_id movies_directors
+B = movies ⨝ movies.id = movies_directors.movie_id A
+πname movies - π name B
+
+
+5)
+
+A = γ actor_id; COUNT(actor_id) -> n_papeis (roles)
+B = actors ⨝ actors.id = roles.actor_id A
+C = σ n_papeis < 2 B
+π first_name, last_name C 
+
+
+
+
+6)

@@ -1,0 +1,9 @@
+1) πfirst_name, last_name (σgender = 'F' (actors))
+
+2) πname (σyear > 1999 (movies))
+
+3) π directors.first_name, movies.name (directors⨯movies_directors⨯movies)
+
+4) π actors.first_name,roles.role,movies.name(((actors)⋈ actors.id= roles.actor_id (roles))⋈ roles.movie_id = movies.id (movies))
+
+5)
