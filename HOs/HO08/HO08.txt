@@ -48,7 +48,7 @@ FROM movies INNER JOIN movies_directors ON (movies.id = movies_directors.movie_i
 SELECT actors.first_name, actors.last_name, COUNT(roles.actor_id) AS Total
 FROM actors INNER JOIN roles ON (actors.id = roles.actor_id)
 GROUP BY actors.first_name,  actors.last_name
-HAVING Total > 2
+HAVING Total < 2
 
 6)
 
