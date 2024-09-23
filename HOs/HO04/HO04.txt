@@ -1,9 +1,42 @@
-1) πfirst_name, last_name (σgender = 'F' (actors))
+1) 
 
-2) πname (σyear > 1999 (movies))
+A = σ gender = 'F' (actors)
+π first_name,last_name A
 
-3) π directors.first_name, movies.name (directors⨯movies_directors⨯movies)
+2)
 
-4) π actors.first_name,roles.role,movies.name(((actors)⋈ actors.id= roles.actor_id (roles))⋈ roles.movie_id = movies.id (movies))
+A = σ year > 1999 movies
+π name A
+
+3) 
+
+A = ρ directorID ← id (directors)
+B = movies_directors ⨝ director_id = directorID A
+C = B ⨝ movie_id = id movies
+π name, first_name C
+
+4) 
+
+A = σ rank > 6 movies
+B = ρ actorsID ← id actors
+C = A ⨝ id = movie_id roles
+D = C ⨝ actor_id = actorsID B
+π name, first_name, role D
 
 5)
+
+A = directors ⨝ id = director_id movies_directors
+B = γ first_name; COUNT(movie_id) → total A
+π first_name, total B
+
+6) 
+
+A = movies ⨝ id = movie_id movies_genres
+B = γ genre; COUNT(movie_id) → total A
+π genre, total B
+
+7)
+
+A = movies ⨝ id = movie_id movies_genres
+B = γ genre; AVG(rank) → media, MAX(rank) → maximo, MIN(rank) → minimo A
+π genre, media, maximo, minimo B
